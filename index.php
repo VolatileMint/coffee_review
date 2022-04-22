@@ -1,8 +1,6 @@
 <?php
 declare(strict_types=1);
 
-
-
 $type = 'mysql';
 $user = 'root';
 $pass = '';
@@ -18,14 +16,12 @@ $options = [
 ];
 try {
     $dbh = new \PDO($dsn, $user, $pass, $options);
-
     $table_name = 'beans';
     $sql = "SELECT * FROM {$table_name} WHERE 1";
     $pre = $dbh->prepare($sql);
     $pre->execute();
     $arr = $pre->fetchAll(PDO::FETCH_ASSOC);
-    var_dump($arr);
-
+    //var_dump($arr);
 }catch( \PDOException $e){
     echo $e->getMessage(); // XXX 実際は出力しない(logに書くとか)
     exit;

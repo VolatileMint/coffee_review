@@ -1,14 +1,13 @@
 <?php
-
+declare(strict_types=1);
 $standard = ["香り"=>"aroma", "酸味"=>"acidry", "甘味"=>"sweetness", "コク"=>"body", "苦味"=>"bitter"];
 ?>
-
 
 <!DOCTYPE html>
 <html lang="ja">
 <head>
     <meta charset="UTF-8">
-    <title></title>
+    <title>コーヒー豆の追加</title>
 </head>
 <body>
 <h1>コーヒー豆を追加する</h1>
@@ -36,3 +35,5 @@ $standard = ["香り"=>"aroma", "酸味"=>"acidry", "甘味"=>"sweetness", "コ�
     <textarea name="memo" cols="30" rows="10"></textarea><br>
     <input type="submit" value="追加確認">
 </form>
+</body>
+</html>
