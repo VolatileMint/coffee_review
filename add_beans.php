@@ -1,6 +1,6 @@
 <?php
 declare(strict_types=1);
-$standard = ["香り"=>"aroma", "酸味"=>"acidry", "甘味"=>"sweetness", "コク"=>"body", "苦味"=>"bitter"];
+$standard = ["香り"=>"aroma", "酸味"=>"acidty", "甘味"=>"sweetness", "コク"=>"body", "苦味"=>"bitter"];
 ?>
 
 <!DOCTYPE html>
