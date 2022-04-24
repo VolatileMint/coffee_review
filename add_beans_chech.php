@@ -1,9 +1,9 @@
 <?php
 declare(strict_types=1);
-
+session_start();
+$error = [];
 $beans_name = $_POST['beans_name'] ?? '';
 $region = $_POST['region'] ?? '';
-
 $taist = [];
 $taist_int = [];
 $taist['aroma'] = $_POST['aroma'] ?? '';
@@ -15,7 +15,7 @@ $taist['bitter'] = $_POST['bitter'] ?? '';
 $roasting = $_POST['roasting'] ?? '';
 $price = $_POST['price'] ?? '';
 $memo = $_POST['memo'] ?? '';
-var_dump($beans_name, $region, $taist, $roasting, $price, $memo);
+//var_dump($beans_name, $region, $taist, $roasting, $price, $memo);
 
 // validate & エスケープ
 if($beans_name === ''){ // 入力されなかった場合はエラー
@@ -62,3 +62,17 @@ var_dump($roasting_e);
 var_dump($price_int);
 var_dump($memo_e);
 */
+if([] != $error){
+    $_SESSION['flash']['form']['error'] = true;
+    $_SESSION['flash']['form']['beans_name'] = $beans_name_e;
+    $_SESSION['flash']['form']['region'] = $region_e;
+    $_SESSION['flash']['form']['taist'] = $taist_int;
+    $_SESSION['flash']['form']['roasting'] = $roasting_e;
+    $_SESSION['flash']['form']['price'] = $price_int;
+    $_SESSION['flash']['form']['memo'] = $memo_e;
+    $_SESSION['flash']['error'] = $error;
+    
+    var_dump($_SESSION['flash']['form']);
+    header('Location: ./add_beans.php');
+    exit;
+}
