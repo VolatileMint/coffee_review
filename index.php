@@ -16,7 +16,7 @@ $options = [
     \PDO::ATTR_ERRMODE => \PDO::ERRMODE_EXCEPTION, // エラー時に例外を投げる(好み)
 ];*/
 try {
-    $dbh = DBhandle();
+    $dbh = DBclass::gethandle();
     //$dbh = new \PDO($dsn, $user, $pass, $options);
     $table_name = 'beans';
     $sql = "SELECT * FROM {$table_name} WHERE 1";
