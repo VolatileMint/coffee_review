@@ -1,5 +1,7 @@
 <?php
 declare(strict_types=1);
+require_once('./Db_function.php');
+
 session_start();
 $error = [];
 $beans_name = $_POST['beans_name'] ?? '';
@@ -77,10 +79,29 @@ if([] != $error){
     var_dump($_SESSION['flash']['form']);
     header('Location: ./add_beans.php');
     exit;
-}else{
-    try{
-        
-    }catch(Exception $e){
-
-    }
 }
+
+try{
+    $dbh = DBhandle();
+    $table_name = 'beans';
+    $sql = "INSERT INTO beans (`beans_name`,`region`,`aroma`,`acidty`,`sweetness`,`body`,`bitter`,`roasting`,`price`, `memo`) 
+        VALUES(:beans_name, :region, :aroma, :acidty, :sweetness, :body, :bitter, :roasting, :price, :memo);";
+    $pre = $dbh->prepare($sql);
+    $pre->bindValue(":beans_name", $beans_name_e);
+    $pre->bindValue(":region", $region_e);
+    $pre->bindValue(":aroma", $taist_int['aroma']);
+    $pre->bindValue(":acidty", $taist_int['acidty']);
+    $pre->bindValue(":sweetness", $taist_int['sweetness']);
+    $pre->bindValue(":body", $taist_int['body']);
+    $pre->bindValue(":bitter", $taist_int['bitter']);
+    $pre->bindValue(":roasting", $roasting_e);
+    $pre->bindValue(":price", $price_int);
+    $pre->bindValue(":memo", $memo_e);
+
+    $r = $pre->execute();
+    var_dump($r);
+}catch( \PDOException $e){
+    echo $e->getMessage(); // XXX 実際は出力しない(logに書くとか)
+    exit;
+}
+

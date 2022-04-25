@@ -1,5 +1,6 @@
 <?php
 
+// DB接続用のDBハンドルを返す
 function DBhandle(){
     $type = 'mysql';
     $user = 'root';
