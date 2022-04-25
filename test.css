@@ -1,0 +1,12 @@
+.wrapper{
+    overflow: hidden;
+    max-width: 1000px;
+    margin: 0 auto;
+}
+.left{
+    float: left;
+    max-width: 60%;
+}
+.right{
+    float: right;
+}

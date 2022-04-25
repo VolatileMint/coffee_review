@@ -1,23 +1,9 @@
 <?php
 declare(strict_types=1);
 require_once('./Db_function.php');
-/*
-$type = 'mysql';
-$user = 'root';
-$pass = '';
-$host = 'localhost';
-$dbname = 'study';
-$charset = 'utf8mb4';
 
-$dsn = "mysql:dbname={$dbname};host={$host};charset={$charset}";
-$options = [
-    \PDO::ATTR_EMULATE_PREPARES => false, // エミュレート無効
-    \PDO::MYSQL_ATTR_MULTI_STATEMENTS => false, // 複文無効
-    \PDO::ATTR_ERRMODE => \PDO::ERRMODE_EXCEPTION, // エラー時に例外を投げる(好み)
-];*/
 try {
     $dbh = DBclass::gethandle();
-    //$dbh = new \PDO($dsn, $user, $pass, $options);
     $table_name = 'beans';
     $sql = "SELECT * FROM {$table_name} WHERE 1";
     $pre = $dbh->prepare($sql);
@@ -35,25 +21,36 @@ try {
 <head>
     <meta charset="UTF-8">
     <title>トップ</title>
+    <link rel="stylesheet" type="text/css" href="test.css">
 </head>
 <body>
 <h1>トップページ</h1>
 <h2>コーヒー評価</h2>
 <a href="add_beans.php">コーヒー豆を追加する</a>
 <a href="review.php">評価する</a>
-
+<hr>
 <?php foreach($arr as $v): ?>
-    <ul>
-        <li>名前：<?= $v['beans_name'];?></li>
-        <li>産地：<?= $v['region'];?></li>
-        <li>香り：<?= $v['aroma'];?></li>
-        <li>酸味：<?= $v['acidty'];?></li>
-        <li>甘さ：<?= $v['sweetness'];?></li>
-        <li>コク：<?= $v['body'];?></li>
-        <li>苦味：<?= $v['bitter'];?></li>
-        <li>焙煎：<?= $v['roasting'];?></li>
-        <p>紹介文：<?= $v['memo'];?></p><br>
-    </ul>
+    <div class="wrapper">
+        <div class="left">
+            <h2><?= $v['beans_name'];?></h2>
+            <p>200g 当たり <?= $v['price'];?>円</p>
+            <p>産地：<?= $v['region'];?><p>
+            <p><?= $v['memo'];?></p><br>
+            <a href="review.php?id=<?= $v['beans_id']?>">レビューを書く</a>
+        </div>
+        <div class="right">
+            <table border="1">
+                <tr><th>香り</th><td><?= $v['aroma'];?></td></tr>
+                <tr><th>酸味</th><td><?= $v['acidty'];?></td>
+                <tr><th>甘さ</th><td><?= $v['sweetness'];?></td>
+                <tr><th>コク</th><td><?= $v['body'];?></td>
+                <tr><th>苦味</th><td><?= $v['bitter'];?></td>
+                <tr><th>焙煎</th><td><?= $v['roasting'];?></td>
+            </table>
+        </div>
+        
+    </div>
+    <hr>
 <?php endforeach; ?>
 
 </body>
