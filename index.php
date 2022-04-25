@@ -1,6 +1,7 @@
 <?php
 declare(strict_types=1);
-
+require_once('./Db_function.php');
+/*
 $type = 'mysql';
 $user = 'root';
 $pass = '';
@@ -13,9 +14,10 @@ $options = [
     \PDO::ATTR_EMULATE_PREPARES => false, // エミュレート無効
     \PDO::MYSQL_ATTR_MULTI_STATEMENTS => false, // 複文無効
     \PDO::ATTR_ERRMODE => \PDO::ERRMODE_EXCEPTION, // エラー時に例外を投げる(好み)
-];
+];*/
 try {
-    $dbh = new \PDO($dsn, $user, $pass, $options);
+    $dbh = DBhandle();
+    //$dbh = new \PDO($dsn, $user, $pass, $options);
     $table_name = 'beans';
     $sql = "SELECT * FROM {$table_name} WHERE 1";
     $pre = $dbh->prepare($sql);

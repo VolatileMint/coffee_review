@@ -4,6 +4,8 @@ session_start();
 $error = [];
 $beans_name = $_POST['beans_name'] ?? '';
 $region = $_POST['region'] ?? '';
+
+// 長いので、$standardでループにすべき？
 $taist = [];
 $taist_int = [];
 $taist['aroma'] = $_POST['aroma'] ?? '';
@@ -75,4 +77,10 @@ if([] != $error){
     var_dump($_SESSION['flash']['form']);
     header('Location: ./add_beans.php');
     exit;
+}else{
+    try{
+        
+    }catch(Exception $e){
+
+    }
 }
