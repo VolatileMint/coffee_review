@@ -1,8 +1,12 @@
 <?php
 declare(strict_types=1);
 require_once('./Db_function.php');
-
 session_start();
+var_dump($_POST);
+exit;
+
+
+
 $error = [];
 $beans_id = $_POST['beans_id'] ?? '';
 $score = $_POST['score'] ?? '';
