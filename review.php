@@ -8,23 +8,22 @@ $date = $_GET['date'] ?? '';
 if (!strtotime($date)) {
     $date = date('Y-m-d');
 }
-/* 
+
 try {
     $dbh = DBclass::gethandle();
     $table_name = 'beans';
-    $sql = "SELECT * FROM {$table_name} WHERE beans_id=:beans_id;";
+    $sql = "SELECT * FROM {$table_name};";
     $pre = $dbh->prepare($sql);
-    $pre->bindValue(":beans_id", $id, \PDO::PARAM_INT);
     $pre->execute();
-    $arr = $pre->fetch(PDO::FETCH_ASSOC);
-    var_dump($arr);
+    $arr = $pre->fetchAll(PDO::FETCH_ASSOC);
 }catch( \PDOException $e){
     echo $e->getMessage(); // XXX 実際は出力しない(logに書くとか)
     exit;
 }
-*/
-// dbからとってくる
-$beans_list = ["beans_id" => "beans_name", "1" => "ブラジルさくらブルボン"];
+
+// 豆情報dbからとってくる
+$beans_list = array_column($arr, 'beans_name','beans_id');
+var_dump($beans_list);
 ?>
 
 <!DOCTYPE html>
